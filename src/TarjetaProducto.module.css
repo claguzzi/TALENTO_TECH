@@ -1,0 +1,97 @@
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid #c9ddcf;
+  border-radius: 16px;
+  background: #f3faf5;
+  color: #214b32;
+}
+
+.imagen {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 400 / 260;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #deefe3;
+}
+
+.contenido {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nombre {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.descripcion {
+  margin: 0;
+  color: #466451;
+  font-size: 1rem;
+}
+
+.precio {
+  margin: auto 0 0;
+  padding-top: 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.favorito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #214b32;
+  border-radius: 8px;
+  background: #fff;
+  color: #214b32;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.favorito[aria-pressed='true'] {
+  background: #214b32;
+  color: #fff;
+}
+
+.favorito:hover {
+  box-shadow: 0 0 0 2px #a8d9bd;
+}
+
+.favorito:focus-visible {
+  outline: 3px solid #355ca5;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .tarjeta {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+
+
+.enlaceImagen { display: block; width: 100%; border-radius: 12px; }
+.nombre a { color: inherit; text-decoration: none; }
+.nombre a:hover { text-decoration: underline; }
+.enlaceImagen:focus-visible, .nombre a:focus-visible {
+  outline: 3px solid #355ca5;
+  outline-offset: 4px;
+}

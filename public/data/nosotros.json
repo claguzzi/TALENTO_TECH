@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "Juan Pérez", "email": "juan@example.com", "puesto": "CEO", "foto": "/images/juan.jpg" },
+  { "id": 2, "nombre": "Ana Gómez", "email": "ana@example.com", "puesto": "Diseñadora UX/UI", "foto": "/images/ana.jpg" },
+  { "id": 3, "nombre": "Carlos Ruiz", "email": "carlos@example.com", "puesto": "Desarrollador Backend", "foto": "/images/carlos.jpg" },
+  { "id": 4, "nombre": "Lucía Torres", "email": "lucia@example.com", "puesto": "Desarrolladora Frontend", "foto": "/images/lucia.jpg" }
+]

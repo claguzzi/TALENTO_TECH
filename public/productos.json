@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cuaderno para desarrolladores",
+    "descripcion": "Organiza ideas, toma apuntes y planifica tus próximos proyectos.",
+    "precio": "USD 12",
+    "imagen": "/productos/cuaderno.svg"
+  },
+  {
+    "id": 2,
+    "nombre": "Teclado mecánico",
+    "descripcion": "Un teclado compacto para acompañarte en tus sesiones de programación.",
+    "precio": "USD 65",
+    "imagen": "/productos/teclado.svg"
+  },
+  {
+    "id": 3,
+    "nombre": "Auriculares inalámbricos",
+    "descripcion": "Escucha tus clases y participa en reuniones con comodidad.",
+    "precio": "USD 40",
+    "imagen": "/productos/auriculares.svg"
+  }
+]
