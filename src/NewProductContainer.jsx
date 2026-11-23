@@ -21,7 +21,7 @@ function NewProductContainer({ onGuardar, productoAEditar, cancelarEdicion, pued
   return (
     <section className="nuevo-producto" aria-labelledby="titulo-nuevo-producto">
       <h2 id="titulo-nuevo-producto">{productoAEditar ? 'Editar producto' : 'Agregar producto'}</h2>
-      <p id="aviso-producto">{puedeGuardar ? 'Los cambios se guardan en Firestore.' : 'Configura Firebase para crear o editar productos.'}</p>
+      <p id="aviso-producto">{puedeGuardar ? 'Los cambios se guardan en Firestore.' : 'Inicia sesi?n para crear o editar productos y verifica la configuraci?n de Firebase.'}</p>
       <ProductForm loading={loading} onSubmit={handleFormSubmit} productoAEditar={productoAEditar} cancelarEdicion={cancelarEdicion} puedeGuardar={puedeGuardar} />
       <p role="status">{loading ? 'Guardando producto…' : mensaje}</p>
       {error && <p className="error-equipo" role="alert">{error}</p>}

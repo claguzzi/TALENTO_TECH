@@ -16,7 +16,7 @@ function Login() {
     setOcupado(true); setError('')
     try {
       await login(email.trim(), password)
-      navigate(location.state?.desde === '/perfil' ? '/perfil' : '/', { replace: true })
+      navigate(location.state?.desde || '/', { replace: true })
     } catch {
       setError('No se pudo iniciar sesión. Comprueba tus datos e intenta nuevamente.')
     } finally { setOcupado(false) }

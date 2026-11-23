@@ -14,9 +14,9 @@ async function conectarCupones() {
     import(/* @vite-ignore */ appUrl),
     import(/* @vite-ignore */ firestoreUrl),
   ])
-  const nombre = 'gestion-cupones'
+  const nombre = 'talentotech'
   const app = appSdk.getApps().find((existente) => existente.name === nombre) ||
-    appSdk.initializeApp({ projectId, apiKey }, nombre)
+    appSdk.initializeApp({ projectId, apiKey, authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN }, nombre)
   return { firestore, coleccion: firestore.collection(firestore.getFirestore(app), 'cupones') }
 }
 

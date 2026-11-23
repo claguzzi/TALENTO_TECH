@@ -21,8 +21,8 @@ export function AuthProvider({ children }) {
         const authUrl = `https://www.gstatic.com/firebasejs/${version}/firebase-auth.js`
         const [appSdk, authSdk] = await Promise.all([import(/* @vite-ignore */ appUrl), import(/* @vite-ignore */ authUrl)])
         if (!activo) return
-        const nombre = 'autenticacion'
-        const app = appSdk.getApps().find((item) => item.name === nombre) || appSdk.initializeApp({ projectId, apiKey }, nombre)
+        const nombre = 'talentotech'
+        const app = appSdk.getApps().find((item) => item.name === nombre) || appSdk.initializeApp({ projectId, apiKey, authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN }, nombre)
         const auth = authSdk.getAuth(app)
         setConexion({ auth, authSdk })
         cancelar = authSdk.onAuthStateChanged(auth, (actual) => {

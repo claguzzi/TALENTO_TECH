@@ -5,6 +5,8 @@ import DetalleProducto from './DetalleProducto'
 import Item from './Item'
 import GestionCupones from './GestionCupones'
 import { paginar } from './paginacion'
+import { useAuth } from './AuthContext'
+import ProtectedRoute from './ProtectedRoute'
 
 async function conectarProductos() {
   const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID
@@ -14,12 +16,13 @@ async function conectarProductos() {
   const appUrl = `https://www.gstatic.com/firebasejs/${version}/firebase-app.js`
   const firestoreUrl = `https://www.gstatic.com/firebasejs/${version}/firebase-firestore.js`
   const [appSdk, firestore] = await Promise.all([import(/* @vite-ignore */ appUrl), import(/* @vite-ignore */ firestoreUrl)])
-  const nombre = 'gestion-productos'
-  const app = appSdk.getApps().find((item) => item.name === nombre) || appSdk.initializeApp({ projectId, apiKey }, nombre)
+  const nombre = 'talentotech'
+  const app = appSdk.getApps().find((item) => item.name === nombre) || appSdk.initializeApp({ projectId, apiKey, authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN }, nombre)
   return { firestore, coleccion: firestore.collection(firestore.getFirestore(app), 'productos') }
 }
 
 function ItemListContainer({ asistentes }) {
+  const { usuario } = useAuth()
   const [products, setProducts] = useState([])
   const [busqueda, setBusqueda] = useState('')
   const [pagina, setPagina] = useState(1)
@@ -88,7 +91,7 @@ function ItemListContainer({ asistentes }) {
   ) : products.length === 0 ? <p>No hay productos disponibles.</p> : productosFiltrados.length === 0 ? <p role="status">No hay productos que coincidan con tu búsqueda.</p> : (
     <>
       <div className="catalogo">
-        {productosPagina.map((producto) => <Item key={producto.id} producto={producto} onEditar={conexion ? () => editarProducto(producto) : undefined} />)}
+        {productosPagina.map((producto) => <Item key={producto.id} producto={producto} onEditar={conexion && usuario ? () => editarProducto(producto) : undefined} />)}
       </div>
       {totalPaginas > 1 && <nav className="paginacion" aria-label="Páginas de productos">
         <button type="button" onClick={() => setPagina(paginaActual - 1)} disabled={paginaActual === 1} aria-label="Página anterior">← Anterior</button>
@@ -100,8 +103,8 @@ function ItemListContainer({ asistentes }) {
 
   return (
     <Routes>
-      <Route path="/" element={<Inicio productos={products} listado={listado} busqueda={busqueda} setBusqueda={cambiarBusqueda} cantidadResultados={productosFiltrados.length} asistentes={asistentes} guardarProducto={guardarProducto} productoAEditar={productoAEditar} cancelarEdicion={() => setProductoAEditar(null)} puedeGuardar={Boolean(conexion) && !loading && !error} />} />
-      <Route path="/admin/cupones" element={<GestionCupones />} />
+      <Route path="/" element={<Inicio productos={products} listado={listado} busqueda={busqueda} setBusqueda={cambiarBusqueda} cantidadResultados={productosFiltrados.length} asistentes={asistentes} guardarProducto={guardarProducto} productoAEditar={productoAEditar} cancelarEdicion={() => setProductoAEditar(null)} puedeGuardar={Boolean(conexion && usuario) && !loading && !error} />} />
+      <Route path="/admin/cupones" element={<ProtectedRoute><GestionCupones /></ProtectedRoute>} />
       <Route path="/productos/:id" element={loading ? <p role="status">Cargando producto...</p> : error ? <p className="error-equipo" role="alert">{error}</p> : <DetalleProducto productos={products} />} />
       <Route path="*" element={<section><h1>Página no encontrada</h1><Link to="/">Volver al inicio</Link></section>} />
     </Routes>
