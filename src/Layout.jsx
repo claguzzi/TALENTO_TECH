@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import PieDePosteo from './PieDePosteo'
+import { useAuth } from './AuthContext'
 
 function Layout({ children, pie }) {
   const { pathname, hash } = useLocation()
+  const { usuario } = useAuth()
 
   useEffect(() => {
     if (hash) {
@@ -23,6 +25,8 @@ function Layout({ children, pie }) {
               <li><Link to="/" aria-current={pathname === '/' ? 'page' : undefined}>Inicio</Link></li>
               <li><Link to="/#titulo-asistentes">Participantes</Link></li>
               <li><Link to="/#titulo-productos">Productos</Link></li>
+              <li><Link to="/admin/cupones" aria-current={pathname === '/admin/cupones' ? 'page' : undefined}>Cupones</Link></li>
+              <li><Link to={usuario ? "/perfil" : "/login"}>{usuario ? "Mi perfil" : "Ingresar"}</Link></li>
               <li><a href="#titulo-equipo">Equipo</a></li>
             </ul>
           </nav>

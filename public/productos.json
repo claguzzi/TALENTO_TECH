@@ -4,20 +4,98 @@
     "nombre": "Cuaderno para desarrolladores",
     "descripcion": "Organiza ideas, toma apuntes y planifica tus próximos proyectos.",
     "precio": "USD 12",
-    "imagen": "/productos/cuaderno.svg"
+    "imagen": "/productos/cuaderno.svg",
+    "categoria": "Papeler?a",
+    "stock": 18
   },
   {
     "id": 2,
     "nombre": "Teclado mecánico",
     "descripcion": "Un teclado compacto para acompañarte en tus sesiones de programación.",
     "precio": "USD 65",
-    "imagen": "/productos/teclado.svg"
+    "imagen": "/productos/teclado.svg",
+    "categoria": "Tecnolog?a",
+    "stock": 12
   },
   {
     "id": 3,
     "nombre": "Auriculares inalámbricos",
     "descripcion": "Escucha tus clases y participa en reuniones con comodidad.",
     "precio": "USD 40",
-    "imagen": "/productos/auriculares.svg"
+    "imagen": "/productos/auriculares.svg",
+    "categoria": "Tecnolog?a",
+    "stock": 9
+  },
+  {
+    "id": 4,
+    "nombre": "Mouse inal?mbrico",
+    "categoria": "Tecnolog?a",
+    "precio": "USD 25",
+    "stock": 20,
+    "imagen": "/productos/teclado.svg",
+    "descripcion": "Precisi?n y comodidad para trabajar todos los d?as."
+  },
+  {
+    "id": 5,
+    "nombre": "Parlante port?til",
+    "categoria": "Tecnolog?a",
+    "precio": "USD 35",
+    "stock": 14,
+    "imagen": "/productos/auriculares.svg",
+    "descripcion": "Sonido para acompa?arte donde vayas."
+  },
+  {
+    "id": 6,
+    "nombre": "Agenda semanal",
+    "categoria": "Papeler?a",
+    "precio": "USD 15",
+    "stock": 25,
+    "imagen": "/productos/cuaderno.svg",
+    "descripcion": "Organiza tus tareas y proyectos de la semana."
+  },
+  {
+    "id": 7,
+    "nombre": "Libreta de ideas",
+    "categoria": "Papeler?a",
+    "precio": "USD 10",
+    "stock": 30,
+    "imagen": "/productos/cuaderno.svg",
+    "descripcion": "Un espacio para guardar tus mejores ideas."
+  },
+  {
+    "id": 8,
+    "nombre": "Almohad?n de escritorio",
+    "categoria": "Hogar",
+    "precio": "USD 20",
+    "stock": 16,
+    "imagen": "/productos/cuaderno.svg",
+    "descripcion": "Un toque de comodidad para tu espacio."
+  },
+  {
+    "id": 9,
+    "nombre": "Organizador de escritorio",
+    "categoria": "Hogar",
+    "precio": "USD 18",
+    "stock": 22,
+    "imagen": "/productos/teclado.svg",
+    "descripcion": "Mant?n tus herramientas siempre a mano."
+  },
+  {
+    "id": 10,
+    "nombre": "Botella deportiva",
+    "categoria": "Deportes",
+    "precio": "USD 16",
+    "stock": 19,
+    "imagen": "/productos/auriculares.svg",
+    "descripcion": "Hidrataci?n para acompa?ar tu rutina."
+  },
+  {
+    "id": 11,
+    "nombre": "Bolso deportivo",
+    "categoria": "Deportes",
+    "precio": "USD 32",
+    "stock": 8,
+    "imagen": "/productos/cuaderno.svg",
+    "descripcion": "Espacio para llevar lo esencial a cada entrenamiento."
   }
 ]

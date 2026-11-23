@@ -1,0 +1,5 @@
+﻿[
+  { "nombre": "Lucía Torres", "rol": "Desarrolladora Frontend", "linkedinURL": "https://www.linkedin.com/in/lucia-torres-ejemplo/", "fotoURL": "https://i.pravatar.cc/200?img=47" },
+  { "nombre": "Ana Gómez", "rol": "Diseñadora UX/UI", "linkedinURL": "https://www.linkedin.com/in/ana-gomez-ejemplo/", "fotoURL": "https://i.pravatar.cc/200?img=44" },
+  { "nombre": "Carlos Ruiz", "rol": "Desarrollador Backend", "linkedinURL": "https://www.linkedin.com/in/carlos-ruiz-ejemplo/", "fotoURL": "https://i.pravatar.cc/200?img=12" }
+]

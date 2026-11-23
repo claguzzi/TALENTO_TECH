@@ -1,37 +1,31 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import ProductForm from './ProductForm'
 
-function NewProductContainer({ onCreateProduct }) {
+function NewProductContainer({ onGuardar, productoAEditar, cancelarEdicion, puedeGuardar }) {
   const [error, setError] = useState(null)
   const [mensaje, setMensaje] = useState('')
   const [loading, setLoading] = useState(false)
 
   async function handleFormSubmit(producto) {
-    setLoading(true)
-    setError(null)
-    setMensaje('')
-
+    setLoading(true); setError(null); setMensaje('')
     try {
-      await onCreateProduct(producto)
-      setMensaje('Producto agregado al catálogo.')
+      await onGuardar(producto)
+      setMensaje(productoAEditar ? 'Producto actualizado.' : 'Producto agregado al catálogo.')
       return true
-    } catch (errorGuardado) {
-      setError(errorGuardado.message || 'No se pudo agregar el producto. Intenta nuevamente.')
+    } catch {
+      setError('No se pudo guardar el producto. Verifica la conexión y los permisos de Firestore.')
       return false
-    } finally {
-      setLoading(false)
-    }
+    } finally { setLoading(false) }
   }
 
   return (
     <section className="nuevo-producto" aria-labelledby="titulo-nuevo-producto">
-      <h2 id="titulo-nuevo-producto">Agregar producto</h2>
-      <p id="aviso-producto">Práctica con carga simulada. Los productos agregados se conservan hasta recargar la página.</p>
-      <ProductForm loading={loading} onSubmit={handleFormSubmit} />
+      <h2 id="titulo-nuevo-producto">{productoAEditar ? 'Editar producto' : 'Agregar producto'}</h2>
+      <p id="aviso-producto">{puedeGuardar ? 'Los cambios se guardan en Firestore.' : 'Configura Firebase para crear o editar productos.'}</p>
+      <ProductForm loading={loading} onSubmit={handleFormSubmit} productoAEditar={productoAEditar} cancelarEdicion={cancelarEdicion} puedeGuardar={puedeGuardar} />
       <p role="status">{loading ? 'Guardando producto…' : mensaje}</p>
       {error && <p className="error-equipo" role="alert">{error}</p>}
     </section>
   )
 }
-
 export default NewProductContainer

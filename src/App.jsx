@@ -1,45 +1,14 @@
-import { useEffect, useState } from 'react'
-import ItemListContainer from './ItemListContainer'
-
+﻿import ItemListContainer from './ItemListContainer'
 import Layout from './Layout'
 import Directorio from './Directorio'
-
+import { Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './AuthContext'
+import ProtectedRoute from './ProtectedRoute'
+import Perfil from './Perfil'
+import Login from './Login'
 import './App.css'
 
 function App() {
-  const [nosotros, setNosotros] = useState([])
-  const [cargando, setCargando] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    async function cargarEquipo() {
-      try {
-        const respuesta = await fetch('/data/nosotros.json', {
-          signal: controller.signal,
-        })
-        if (!respuesta.ok) {
-          throw new Error('No se pudo cargar el equipo. Intenta recargar la página.')
-        }
-        const datos = await respuesta.json()
-        if (!Array.isArray(datos)) {
-          throw new Error('El archivo del equipo no contiene una lista válida.')
-        }
-        if (!controller.signal.aborted) setNosotros(datos)
-      } catch (errorCarga) {
-        if (!controller.signal.aborted) {
-          setError(errorCarga.message || 'No se pudo cargar el equipo.')
-        }
-      } finally {
-        if (!controller.signal.aborted) setCargando(false)
-      }
-    }
-
-    cargarEquipo()
-    return () => controller.abort()
-  }, [])
-
   const asistentes = [
     { id: 1, nombre: 'Juan Pérez', tarea: 'Frontend Developer', emoji: '👨‍💻' },
     { id: 2, nombre: 'Ana Gómez', tarea: 'Diseñadora UX/UI', emoji: '🎨' },
@@ -47,16 +16,16 @@ function App() {
   ]
 
   return (
-    <Layout pie={<Directorio usuarios={nosotros} cargando={cargando} error={error} />}>
-      <ItemListContainer asistentes={asistentes} />
-    </Layout>
+    <AuthProvider>
+      <Layout pie={<Directorio />}>
+        <Routes>
+          <Route path="/perfil" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<ItemListContainer asistentes={asistentes} />} />
+        </Routes>
+      </Layout>
+    </AuthProvider>
   )
 }
 
 export default App
-
-
-
-
-
-

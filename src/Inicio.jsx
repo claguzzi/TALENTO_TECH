@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 import Asistente from './Asistente'
 import NewProductContainer from './NewProductContainer'
 
-function Inicio({ productos, listado, asistentes, crearProducto, puedeCrear }) {
+function Inicio({ productos, listado, busqueda, setBusqueda, cantidadResultados, asistentes, guardarProducto, productoAEditar, cancelarEdicion, puedeGuardar }) {
   return (
     <>
+      <title>Catálogo de productos | Talento Tech</title>
+      <meta name="description" content="Descubre productos y herramientas para crear, aprender y desarrollar tus proyectos." />
       <section className="hero-inicio">
         <div>
           <span className="insignia">Ideas, herramientas y comunidad</span>
@@ -20,6 +22,14 @@ function Inicio({ productos, listado, asistentes, crearProducto, puedeCrear }) {
       <section className="seccion-productos" aria-labelledby="titulo-productos">
         <h2 id="titulo-productos">Productos destacados</h2>
         <p className="introduccion-seccion">Una selección para acompañarte en cada etapa de tu proyecto.</p>
+        <div className="buscador-productos">
+          <label htmlFor="buscar-productos">Buscar productos</label>
+          <div className="buscador-campo">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m16 16 4 4" /></svg>
+            <input id="buscar-productos" type="search" value={busqueda} onChange={(evento) => setBusqueda(evento.target.value)} placeholder="Buscar por nombre" />
+          </div>
+          {busqueda.trim() && <p className="resultados-busqueda" role="status">{cantidadResultados} {cantidadResultados === 1 ? 'producto encontrado' : 'productos encontrados'}</p>}
+        </div>
         {listado}
       </section>
       <section className="seccion-participantes" aria-labelledby="titulo-asistentes">
@@ -28,7 +38,7 @@ function Inicio({ productos, listado, asistentes, crearProducto, puedeCrear }) {
           {asistentes.map((asistente) => <Asistente key={asistente.id} {...asistente} />)}
         </div>
       </section>
-      {puedeCrear && <NewProductContainer onCreateProduct={crearProducto} />}
+      <NewProductContainer onGuardar={guardarProducto} productoAEditar={productoAEditar} cancelarEdicion={cancelarEdicion} puedeGuardar={puedeGuardar} />
     </>
   )
 }

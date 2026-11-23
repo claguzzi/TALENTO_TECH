@@ -95,3 +95,31 @@
   outline: 3px solid #355ca5;
   outline-offset: 4px;
 }
+
+/* Catálogo */
+.tarjeta {
+  gap: 16px;
+  padding: 16px;
+  border-color: #dce8e0;
+  background: #fff;
+  box-shadow: 0 8px 24px #2430470a;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.tarjeta:hover { transform: translateY(-3px); box-shadow: 0 14px 30px #24304718; }
+.categoria {
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #e5f3e9;
+  color: #285d3e;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.nombre { color: #1b3443; }
+.descripcion { color: #63736a; font-size: 0.9rem; }
+.stock { margin-top: 2px; color: #607a69; font-size: 0.8rem; }
+@media (prefers-reduced-motion: reduce) { .tarjeta { transition: none; } .tarjeta:hover { transform: none; } }
+.editar { width: 100%; min-height: 44px; border: 1px solid #355ca5; border-radius: 8px; background: #fff; color: #274b87; font: inherit; font-weight: 600; cursor: pointer; }
+.editar:disabled { opacity: .5; cursor: not-allowed; }
+.editar:focus-visible { outline: 3px solid #355ca5; outline-offset: 3px; }
